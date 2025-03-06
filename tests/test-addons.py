@@ -183,7 +183,7 @@ class TestAddons(object):
         kubectl(f"label node {node_name} pvc-node-name-")
 
     @pytest.mark.skipif(platform.machine() == "s390x", reason="Not available on s390x")
-    def test_cis(self):
+    def test_aaa_cis(self):
         """
         Sets up and tests storage, ingress under cis-hardening.
         """
