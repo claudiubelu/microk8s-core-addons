@@ -238,7 +238,7 @@ addresses=$($KUBECTL get no -lkube-ovn/role=master --no-headers -o wide | awk '{
 count=$($KUBECTL get no -lkube-ovn/role=master --no-headers | wc -l)
 echo "Install OVN DB in $addresses"
 
-cat <<EOF >kube-ovn-crd.yaml
+cat <<EOF > kube-ovn-crd.yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2828,7 +2828,7 @@ spec:
                   x-kubernetes-list-type: map
 EOF
 
-cat <<EOF >ovn-ovs-sa.yaml
+cat <<EOF > ovn-ovs-sa.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -2879,7 +2879,7 @@ subjects:
     namespace: kube-system
 EOF
 
-cat <<EOF >kube-ovn-sa.yaml
+cat <<EOF > kube-ovn-sa.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -3083,7 +3083,7 @@ subjects:
     namespace: kube-system
 EOF
 
-cat <<EOF >kube-ovn-cni-sa.yaml
+cat <<EOF > kube-ovn-cni-sa.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -3186,7 +3186,7 @@ subjects:
     namespace: kube-system
 EOF
 
-cat <<EOF >kube-ovn-app-sa.yaml
+cat <<EOF > kube-ovn-app-sa.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -3262,7 +3262,7 @@ $KUBECTL apply -f kube-ovn-sa.yaml
 $KUBECTL apply -f kube-ovn-cni-sa.yaml
 $KUBECTL apply -f kube-ovn-app-sa.yaml
 
-cat <<EOF >ovn.yaml
+cat <<EOF > ovn.yaml
 ---
 kind: Service
 apiVersion: v1
@@ -3491,7 +3491,7 @@ EOF
 $KUBECTL apply -f ovn.yaml
 
 if $DPDK; then
-  cat <<EOF >ovs-ovn-ds.yaml
+  cat <<EOF > ovs-ovn-ds.yaml
 kind: DaemonSet
 apiVersion: apps/v1
 metadata:
@@ -3659,7 +3659,7 @@ spec:
 EOF
 
 else
-  cat <<EOF >ovs-ovn-ds.yaml
+  cat <<EOF > ovs-ovn-ds.yaml
 ---
 kind: DaemonSet
 apiVersion: apps/v1
@@ -3843,7 +3843,7 @@ $KUBECTL apply -f ovs-ovn-ds.yaml
 
 if $HYBRID_DPDK; then
 
-  cat <<EOF >ovn-dpdk.yaml
+  cat <<EOF > ovn-dpdk.yaml
 kind: DaemonSet
 apiVersion: apps/v1
 metadata:
@@ -4013,7 +4013,7 @@ echo ""
 
 echo "[Step 3/6] Install Kube-OVN"
 
-cat <<EOF >kube-ovn.yaml
+cat <<EOF > kube-ovn.yaml
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -4779,7 +4779,7 @@ $KUBECTL rollout status daemonset/kube-ovn-cni -n kube-system --timeout 300s
 
 if $ENABLE_IC; then
 
-  cat <<EOF >ovn-ic-controller.yaml
+  cat <<EOF > ovn-ic-controller.yaml
 kind: Deployment
 apiVersion: apps/v1
 metadata:
